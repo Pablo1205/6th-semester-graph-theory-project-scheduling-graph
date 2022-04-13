@@ -1,0 +1,100 @@
+* Creating the  graph :
+10  vertices
+16  edges
+0 -> 1 = 0
+1 -> 2 = 2
+1 -> 4 = 2
+1 -> 5 = 2
+2 -> 3 = 3
+2 -> 4 = 3
+2 -> 8 = 3
+3 -> 7 = 5
+4 -> 5 = 6
+4 -> 6 = 6
+4 -> 8 = 6
+5 -> 6 = 2
+5 -> 7 = 2
+6 -> 9 = 1
+7 -> 8 = 6
+8 -> 9 = 1
+
+Representation of the table in a matrix form :
+Adjacency Matrix :
+     0    1    2    3    4    5    6    7    8    9
+0    0    1    0    0    0    0    0    0    0    0
+1    0    0    1    0    1    1    0    0    0    0
+2    0    0    0    1    1    0    0    0    1    0
+3    0    0    0    0    0    0    0    1    0    0
+4    0    0    0    0    0    1    1    0    1    0
+5    0    0    0    0    0    0    1    1    0    0
+6    0    0    0    0    0    0    0    0    0    1
+7    0    0    0    0    0    0    0    0    1    0
+8    0    0    0    0    0    0    0    0    0    1
+9    0    0    0    0    0    0    0    0    0    0
+
+Value Matrix :
+       0    1    2    3    4    5    6    7    8    9
+  0    *    0    *    *    *    *    *    *    *    *
+  1    *    *    2    *    2    2    *    *    *    *
+  2    *    *    *    3    3    *    *    *    3    *
+  3    *    *    *    *    *    *    *    5    *    *
+  4    *    *    *    *    *    6    6    *    6    *
+  5    *    *    *    *    *    *    2    2    *    *
+  6    *    *    *    *    *    *    *    *    *    1
+  7    *    *    *    *    *    *    *    *    6    *
+  8    *    *    *    *    *    *    *    *    *    1
+  9    *    *    *    *    *    *    *    *    *    *
+
+* Detecting a cycle
+* Method of eliminating entry points
+
+Entry points: 0
+Eliminating entry points
+Remaining vertices: 1 2 3 4 5 6 7 8 9
+
+Entry points: 1
+Eliminating entry points
+Remaining vertices: 2 3 4 5 6 7 8 9
+
+Entry points: 2
+Eliminating entry points
+Remaining vertices: 3 4 5 6 7 8 9
+
+Entry points: 3 4
+Eliminating entry points
+Remaining vertices: 5 6 7 8 9
+
+Entry points: 5
+Eliminating entry points
+Remaining vertices: 6 7 8 9
+
+Entry points: 6 7
+Eliminating entry points
+Remaining vertices: 8 9
+
+Entry points: 8
+Eliminating entry points
+Remaining vertices: 9
+
+Entry points: 9
+Eliminating entry points
+Remaining vertices:
+There are no more entry points, because we deleted all the vertices.
+-> There is no cycle
+
+There are no negative-weight edges
+-> This is a scheduling graph
+
+┌──────────────┬────────┬────────┬────────┬────────┬────────┬────────┬────────┬────────┬────────┬────────┐
+│Ranks         │0       │1       │2       │3       │3       │4       │5       │5       │6       │7       │
+├──────────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+│Tasks         │0       │1       │2       │3       │4       │5       │6       │7       │8       │9       │
+├──────────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+│Earliest dates│(0, 0)  │(0, 0)  │(2, 1)  │(5, 2)  │(5, 2)  │(11, 4) │(13, 5) │(13, 5) │(19, 7) │(20, 8) │
+├──────────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+│Latest dates  │(0, 1)  │(0, 2)  │(2, 4)  │(8, 7)  │(5, 5)  │(11, 7) │(19, 9) │(13, 8) │(19, 9) │(20, 9) │
+├──────────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+│Floats        │0       │0       │0       │3       │0       │0       │6       │0       │0       │0       │
+└──────────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┘
+
+The critical path is:  [0, 1, 2, 4, 5, 7, 8, 9]
